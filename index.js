@@ -25,4 +25,5 @@ const server = app.listen(port, () => {
   winston.info(`CONNECTED TO PORT ${port}`);
 });
 
+// for testing
 module.exports = server;

@@ -125,9 +125,7 @@ class Customers {
       email: Joi.string()
         .email({ minDomainSegments: 2 })
         .required(),
-      password: Joi.string()
-        .regex(/^[a-zA-Z0-9]{3,30}$/)
-        .required(),
+      password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
       day_phone: Joi.string(),
       eve_phone: Joi.string(),
       mob_phone: Joi.string()
@@ -135,7 +133,6 @@ class Customers {
 
     const { error } = Joi.validate(req.body, schema);
     if (error) return res.status(400).send(error.details[0].message);
-
     //create
     const selected_customer = await Customer.findByPk(req.user.customer_id);
     const updated_customer = await selected_customer.update({

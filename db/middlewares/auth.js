@@ -4,7 +4,7 @@ export default function(req, res, next) {
   const header = req.header("USER-KEY");
 
   if (!header)
-    return res.status(403).send({
+    return res.status(401).send({
       error: {
         status: 401,
         code: "AUT_02",

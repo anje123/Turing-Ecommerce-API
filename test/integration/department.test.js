@@ -1,7 +1,4 @@
 import request from "supertest";
-import "regenerator-runtime/runtime";
-import "babel-jest";
-const { sequelize } = require("../../db/models/index");
 let server;
 
 describe("/departments", () => {
@@ -10,17 +7,30 @@ describe("/departments", () => {
   });
 
   afterAll(async () => {
+    await server.close();
     await new Promise(resolve => setTimeout(() => resolve(), 500));
   });
 
-  afterEach(async () => {
-    await server.close();
-    sequelize.close();
-  });
-  describe("GET /", () => {
-    it("should return status code 200 if success ", async () => {
-      const res = await request(server).get("/departments");
+  describe("GET /departments", () => {
+    it("respond with json containing a list of all departments", async () => {
+      const res = await request(server)
+        .get("/departments")
+        .expect("Content-Type", /json/);
       expect(res.status).toBe(200);
+    });
+  });
+
+  describe("GET /departments/:department_id", () => {
+    it("respond with json containing a department with the id given", async () => {
+      const res = await request(server)
+        .get("/departments/1")
+        .expect("Content-Type", /json/);
+      expect(res.status).toBe(200);
+    });
+
+    it("return status code 404 if not found", async () => {
+      const res = await request(server).get("/departments/notfoundid");
+      expect(res.status).toBe(404);
     });
   });
 });
