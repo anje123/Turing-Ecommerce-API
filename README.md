@@ -32,6 +32,5 @@ Best practices are used so that project can be scaled.<br />
 All errors are handled properly, using the mentioned documentation.<br />
 MVC Framework is used in this API project.<br />
 
-Project details can be found at : https://turing.ly/dashboard/challenge
 
 swagger file : [swagger](https://backendapi.turing.com/docs/)
