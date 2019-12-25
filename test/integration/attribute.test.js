@@ -3,7 +3,7 @@ import { type } from "os";
 
 let server;
 
-describe("attributes /", () => {
+describe("attributes  /", () => {
   beforeAll(() => {
     server = require("../../index");
   });
