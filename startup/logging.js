@@ -1,6 +1,6 @@
 import winston from "winston";
 
-// logging configuration with winston
+// good logging configuration with winston
 export default () => {
   winston.exceptions.handle(
     new winston.transports.File({ filename: "uncaughterror.log" }),
