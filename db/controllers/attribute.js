@@ -48,7 +48,7 @@ class Attributes {
         error: "404"
       });
     const attribute = await sequelize.query(
-      `SELECT a.name AS attribute_name, av.attribute_value_id, av.value AS attribute_value FROM attribute_value av INNER JOIN attribute a ON av.attribute_id = a.attribute_id WHERE av.attribute_value_id IN (SELECT attribute_value_id FROM   product_attribute WHERE  product_id = ${product_id}) ORDER BY   a.name;`
+      `SELECT  a.name AS attribute_name, av.attribute_value_id, av.value AS attribute_value FROM attribute_value av INNER JOIN attribute a ON av.attribute_id = a.attribute_id WHERE av.attribute_value_id IN (SELECT attribute_value_id FROM   product_attribute WHERE  product_id = ${product_id}) ORDER BY   a.name;`
     );
 
     res.send(attribute);
